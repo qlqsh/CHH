@@ -9,9 +9,9 @@
 #import <Foundation/Foundation.h>
 
 /**
-*  子板块对象，包括：名称、新帖子数量，url地址，3个属性。
+*  子板块对象，包括：名称、新帖子数量、url地址，3个属性。
 */
-@interface FLSubforum : NSObject <NSCoding>
+@interface FLSubforum : NSObject
 
 @property(nonatomic, copy) NSString *name;
 @property(nonatomic, copy) NSString *number;

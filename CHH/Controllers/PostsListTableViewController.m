@@ -11,8 +11,6 @@
 #import "PLSubforum.h"
 #import "PostsCell.h"
 
-#define LOCAL_DIRECTORY @"/Users/liuming/Documents/liuming/2014工程/" // 临时措施
-
 @interface PostsListTableViewController ()
 
 @end
@@ -22,16 +20,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    // TODO：临时措施，最终需要SubforumTableViewController 通过 segue 把需要访问的链接地址传递过来。
-    NSString *pathString = @"CHH/CHHTests/Models/PostsList/PL.txt";
-    NSString *path = [NSString stringWithFormat:@"%@%@", LOCAL_DIRECTORY, pathString];
-    NSData *htmlData = [NSData dataWithContentsOfFile:path];
-    PLSubforum *subforum = [[PLSubforum alloc] initWithContent:htmlData];
+    NSLog(@"%@", _href);
+    
+    PLSubforum *subforum = [[PLSubforum alloc] initWithURL:_href];
     _postsList = subforum.postsList;
 }
 

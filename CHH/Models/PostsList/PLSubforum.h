@@ -19,6 +19,5 @@
 
 // 利用提供的url地址，获取网页内容，进行解析。通过 segue 传递。
 - (id)initWithURL:(NSString *)urlString;
-- (id)initWithContent:(NSData *)data;
 
 @end

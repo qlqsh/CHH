@@ -18,52 +18,52 @@
 /**
 *  初始化一个子板块对象。
 *
-*  @param content 需要提取的网页片断
+*  @param content 需要提取的网页片断。格式<div class="bm_c xxx">...</div>
 *
 *  @return 子板块对象
 */
 - (id)initWithContent:(NSString *)content {
-    NSData *htmlData = [content dataUsingEncoding:NSUTF8StringEncoding];
-    TFHpple *doc = [[TFHpple alloc] initWithHTMLData:htmlData];
+	NSData *htmlData = [content dataUsingEncoding:NSUTF8StringEncoding];
+	TFHpple *doc = [[TFHpple alloc] initWithHTMLData:htmlData];
 
-    NSString *subforumName;
-    NSString *subforumNumber;
-    NSString *subforumHref;
+	NSString *subforumName;
+	NSString *subforumNumber;
+	NSString *subforumHref;
 
-    // 获取子板块名称、url地址
-    NSArray *elements = [doc searchWithXPathQuery:@"//dt//a"];
-    if ([elements count] != 1) {
-        return nil;
-    } else {
-        subforumName = [elements[0] text];
-        subforumHref = [elements[0] objectForKey:@"href"];
-    }
+	// 获取子板块名称、url地址
+	NSArray *elements = [doc searchWithXPathQuery:@"//div//a"];
+	if ([elements count] != 1) {
+		return nil;
+	} else {
+		subforumName = [elements[0] text];
+		subforumHref = [elements[0] objectForKey:@"href"];
+	}
 
-    // 获取子板块今日回帖数量
-    elements = [doc searchWithXPathQuery:@"//dt//em"];
-    if ([elements count] != 1) {
-        subforumNumber = @"";
-    } else {
-        subforumNumber = [elements[0] text];
-    }
+	// 获取子板块今日回帖数量，有可能不存在。
+	elements = [doc searchWithXPathQuery:@"//div//font"];
+	if ([elements count] != 1) {
+		subforumNumber = @"";
+	} else {
+		subforumNumber = [elements[0] text];
+	}
 
-    if (subforumName == nil || [subforumName isEqualToString:@""]) {
-        return nil;
-    }
-    if (subforumHref == nil || [subforumHref isEqualToString:@""]) {
-        return nil;
-    }
-    if (subforumNumber == nil) {
-        subforumNumber = @"";
-    }
+	if (subforumName == nil || [subforumName isEqualToString:@""]) {
+		return nil;
+	}
+	if (subforumHref == nil || [subforumHref isEqualToString:@""]) {
+		return nil;
+	}
+	if (subforumNumber == nil) {
+		subforumNumber = @"";
+	}
 
-    if (self = [super init]) {
-        _name = subforumName;
+	if (self = [super init]) {
+        _name   = subforumName;
         _number = subforumNumber;
-        _href = subforumHref;
-    }
+        _href   = subforumHref;
+	}
 
-    return self;
+	return self;
 }
 
 #pragma mark - 方法覆写
@@ -76,9 +76,9 @@
 *  @return YES：相等。NO：不相等。
 */
 - (BOOL)isEqual:(id)object {
-    FLSubforum *subforum = (FLSubforum *) object;
-    // 2个子板块对象name、url相等，则说明2个对象相等。
-    return [_name isEqual:subforum.name] && [_href isEqual:subforum.href];
+	FLSubforum *subforum = (FLSubforum *) object;
+	// 2个子板块对象name、url相等，则说明2个对象相等。
+	return [_name isEqual:subforum.name] && [_href isEqual:subforum.href];
 }
 
 /**
@@ -87,38 +87,10 @@
 *  @return FLSubforum 对象内容的描述。
 */
 - (NSString *)description {
-    NSString *description = [NSString stringWithFormat:@"\n{\n\t名称：%@ \n\t数量：%@ \n\t链接：%@ \n}",
-                                                       _name, _number, _href];
+	NSString *description = [NSString stringWithFormat:@"\n{\n\t名称：%@ \n\t数量：%@ \n\t链接：%@ \n}",
+													   _name, _number, _href];
 
-    return [description copy];
-}
-
-#pragma mark - NSCoding
-
-/**
-*  对属性进行编码。
-*/
-- (void)encodeWithCoder:(NSCoder *)aCoder {
-    [aCoder encodeObject:_name forKey:@"name"];
-    [aCoder encodeObject:_number forKey:@"number"];
-    [aCoder encodeObject:_href forKey:@"href"];
-}
-
-/**
-*  解码，建立 FLSubforum 对象。
-*/
-- (id)initWithCoder:(NSCoder *)aDecoder {
-    NSString *name = [aDecoder decodeObjectForKey:@"name"];
-    NSString *number = [aDecoder decodeObjectForKey:@"number"];
-    NSString *href = [aDecoder decodeObjectForKey:@"href"];
-
-    if (self = [super init]) {
-        _name = name;
-        _number = number;
-        _href = href;
-    }
-
-    return self;
+	return [description copy];
 }
 
 @end

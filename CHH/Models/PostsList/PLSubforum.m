@@ -15,38 +15,22 @@
 #import "PLPosts.h"
 
 @implementation PLSubforum
-
-- (id)initWithURL:(NSString *)urlString {
-    
-
-    //TODO: 由于不登录就没有访问权限，所以必须登录后才能获取数据。可以先用本地html进行测试，以后加入cookie后再联网测试。还有需要登录后才能获取数据的页面，在app端需要跳到登录视图。
-    // 网页解析
-    NSData *htmlData = [GetURLContent contentWithURL:urlString];
-    
-    return [self initWithContent:htmlData];
-}
 /**
- *  网页内容解析
+ *  指定网页解析。
  *
- *  @param data 网页内容数据
+ *  @param data 网页地址
  *
  *  @return 解析后的对象
  */
-- (id)initWithContent:(NSData *)data {
+- (id)initWithURL:(NSString *)urlString {
+    NSData *htmlData = [GetURLContent contentWithURL:urlString];
+    TFHpple *doc = [[TFHpple alloc] initWithHTMLData:htmlData];
+    
     NSMutableArray *posts = [NSMutableArray new];
-    NSString *title;
     NSString *href;
     
-    TFHpple *doc = [[TFHpple alloc] initWithHTMLData:data];
-    
-    // 提取获取更多帖子的url
-    NSArray *elements = [doc searchWithXPathQuery:@"//a[@class='nxt']"];
-    if (0 < [elements count]) {
-        href = [[elements objectAtIndex:0] objectForKey:@"href"];
-    }
-    
     // 提取需要解析的网页的主体
-    elements = [doc searchWithXPathQuery:@"//div[@class='bm_c']"];
+    NSArray *elements = [doc searchWithXPathQuery:@"//div[@class='bm']"];
     if (1 > [elements count])
     {
         return nil;
@@ -54,10 +38,10 @@
     NSString *content = [[elements objectAtIndex:0] raw];
 
     // 提取帖子列表
-    NSData *htmlData = [content dataUsingEncoding:NSUTF8StringEncoding];
+    htmlData = [content dataUsingEncoding:NSUTF8StringEncoding];
     doc = [[TFHpple alloc] initWithHTMLData:htmlData];
 
-    elements = [doc searchWithXPathQuery:@"//tbody"];
+    elements = [doc searchWithXPathQuery:@"//div//div"];
     if (1 > [elements count])
     {
         return nil;
@@ -78,7 +62,6 @@
     }
     
     if (self = [super init]) {
-        _title     = title;
         _postsList = posts;
         _href      = href;
     }
@@ -87,7 +70,6 @@
 }
 
 #pragma mark - 方法覆写
-
 - (BOOL)isEqual:(id)object {
     PLSubforum *subforum = (PLSubforum *) object;
 
@@ -110,7 +92,6 @@
 }
 
 #pragma mark - NSCoding
-
 /**
 *  对属性进行编码。
 */

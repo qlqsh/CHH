@@ -15,7 +15,7 @@
 @property (nonatomic, copy) NSString *author;
 @property (nonatomic, copy) NSString *replyDate;
 @property (nonatomic, copy) NSString *content;
-@property (nonatomic, copy) NSString *href;
+@property (nonatomic, copy) NSString *imgHref;
 
 // 使用内容片段，提取必要数据，初始化一个回复对象。
 - (id)initWithContent:(NSString *)htmlContent;

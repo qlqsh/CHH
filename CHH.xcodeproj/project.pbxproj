@@ -25,17 +25,24 @@
 		475AFF36196A932C0030B0A4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 475AFF18196A932C0030B0A4 /* UIKit.framework */; };
 		475AFF3E196A932C0030B0A4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 475AFF3C196A932C0030B0A4 /* InfoPlist.strings */; };
 		475BA19919B45D2C0071193C /* PLSubforum.m in Sources */ = {isa = PBXBuildFile; fileRef = 475BA19819B45D2C0071193C /* PLSubforum.m */; };
-		475BA19B19B46E5B0071193C /* PLSubforumTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 475BA19A19B46E5B0071193C /* PLSubforumTests.m */; };
-		476F703219D317E80085501A /* FLForumDataTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 476F702F19D317E80085501A /* FLForumDataTests.m */; };
 		476F703319D317E80085501A /* FLPartTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 476F703019D317E80085501A /* FLPartTests.m */; };
 		476F703419D317E80085501A /* FLSubforumTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 476F703119D317E80085501A /* FLSubforumTests.m */; };
+		4776476F19F849560028EBAF /* ForumList.html in Resources */ = {isa = PBXBuildFile; fileRef = 4776476B19F849560028EBAF /* ForumList.html */; };
+		4776477019F849560028EBAF /* login.html in Resources */ = {isa = PBXBuildFile; fileRef = 4776476C19F849560028EBAF /* login.html */; };
+		4776477119F849560028EBAF /* PostsList.html in Resources */ = {isa = PBXBuildFile; fileRef = 4776476D19F849560028EBAF /* PostsList.html */; };
+		4776477219F849560028EBAF /* ReplyList.html in Resources */ = {isa = PBXBuildFile; fileRef = 4776476E19F849560028EBAF /* ReplyList.html */; };
+		4776477419F892BC0028EBAF /* FLForumDataTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4776477319F892BC0028EBAF /* FLForumDataTests.m */; };
+		4776477619F892C30028EBAF /* PLSubforumTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4776477519F892C30028EBAF /* PLSubforumTests.m */; };
 		47809D2419B3E3AE00C18BC7 /* PLPosts.m in Sources */ = {isa = PBXBuildFile; fileRef = 47809D2319B3E3AE00C18BC7 /* PLPosts.m */; };
 		47809D2719B4050C00C18BC7 /* PLPostsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 47809D2619B4050C00C18BC7 /* PLPostsTests.m */; };
 		47892B72196BD265001D8EB5 /* SubforumTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 47892B71196BD265001D8EB5 /* SubforumTableViewController.m */; };
-		47C65A7019E4CB71008FCB70 /* PL.txt in Resources */ = {isa = PBXBuildFile; fileRef = 47C65A6F19E4CB71008FCB70 /* PL.txt */; };
+		47ADFE6A19F5F44E005BFF91 /* RLReplyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 47ADFE6919F5F44E005BFF91 /* RLReplyTests.m */; };
 		47FC1409199C2E56003DB608 /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4736613A196D3C73001202C5 /* libxml2.2.dylib */; };
 		68F832F6993241A48428247A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E55CA1457B2C48A3843770C8 /* libPods.a */; };
+		AF1BA11B47057F688224A94F /* ForumListSnippet2.html in Resources */ = {isa = PBXBuildFile; fileRef = AF1BAD3B4FE62D3E608389D6 /* ForumListSnippet2.html */; };
+		AF1BA65446A6EEA586033FFD /* PostsListSnippet1.html in Resources */ = {isa = PBXBuildFile; fileRef = AF1BAB8B318366A7F01EE25F /* PostsListSnippet1.html */; };
 		AF1BA750F4F2B244088D7674 /* FLSubforum.m in Sources */ = {isa = PBXBuildFile; fileRef = AF1BAE843267D4AD7BA269B2 /* FLSubforum.m */; };
+		AF1BA9387F82D5808F550568 /* ForumListSnippet1.html in Resources */ = {isa = PBXBuildFile; fileRef = AF1BA5BE87CC1ADD65CAFC55 /* ForumListSnippet1.html */; };
 		AF1BAED637778EE7221C1372 /* FLForumData.m in Sources */ = {isa = PBXBuildFile; fileRef = AF1BAABC494757FDA6C96AA2 /* FLForumData.m */; };
 		AF1BAF9D4EDB135E33E845A3 /* FLPart.m in Sources */ = {isa = PBXBuildFile; fileRef = AF1BAE66178C41A396CF7DB4 /* FLPart.m */; };
 /* End PBXBuildFile section */
@@ -81,19 +88,26 @@
 		475AFF3D196A932C0030B0A4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		475BA19719B45D2C0071193C /* PLSubforum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PLSubforum.h; path = Models/PostsList/PLSubforum.h; sourceTree = "<group>"; };
 		475BA19819B45D2C0071193C /* PLSubforum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PLSubforum.m; path = Models/PostsList/PLSubforum.m; sourceTree = "<group>"; };
-		475BA19A19B46E5B0071193C /* PLSubforumTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PLSubforumTests.m; path = Models/PostsList/PLSubforumTests.m; sourceTree = "<group>"; };
-		476F702F19D317E80085501A /* FLForumDataTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLForumDataTests.m; sourceTree = "<group>"; };
 		476F703019D317E80085501A /* FLPartTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLPartTests.m; sourceTree = "<group>"; };
 		476F703119D317E80085501A /* FLSubforumTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLSubforumTests.m; sourceTree = "<group>"; };
+		4776476B19F849560028EBAF /* ForumList.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = ForumList.html; sourceTree = "<group>"; };
+		4776476C19F849560028EBAF /* login.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = login.html; sourceTree = "<group>"; };
+		4776476D19F849560028EBAF /* PostsList.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = PostsList.html; sourceTree = "<group>"; };
+		4776476E19F849560028EBAF /* ReplyList.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = ReplyList.html; sourceTree = "<group>"; };
+		4776477319F892BC0028EBAF /* FLForumDataTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLForumDataTests.m; sourceTree = "<group>"; };
+		4776477519F892C30028EBAF /* PLSubforumTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLSubforumTests.m; sourceTree = "<group>"; };
 		47809D2219B3E3AE00C18BC7 /* PLPosts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PLPosts.h; path = Models/PostsList/PLPosts.h; sourceTree = "<group>"; };
 		47809D2319B3E3AE00C18BC7 /* PLPosts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PLPosts.m; path = Models/PostsList/PLPosts.m; sourceTree = "<group>"; };
 		47809D2619B4050C00C18BC7 /* PLPostsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PLPostsTests.m; path = Models/PostsList/PLPostsTests.m; sourceTree = "<group>"; };
 		47892B70196BD265001D8EB5 /* SubforumTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SubforumTableViewController.h; path = Controllers/SubforumTableViewController.h; sourceTree = "<group>"; };
 		47892B71196BD265001D8EB5 /* SubforumTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SubforumTableViewController.m; path = Controllers/SubforumTableViewController.m; sourceTree = "<group>"; };
-		47C65A6F19E4CB71008FCB70 /* PL.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = PL.txt; path = Models/PostsList/PL.txt; sourceTree = "<group>"; };
+		47ADFE6919F5F44E005BFF91 /* RLReplyTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RLReplyTests.m; path = Models/ReplyList/RLReplyTests.m; sourceTree = "<group>"; };
 		AF1BA26DEFFB289592B293A9 /* FLSubforum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FLSubforum.h; path = Models/ForumList/FLSubforum.h; sourceTree = "<group>"; };
+		AF1BA5BE87CC1ADD65CAFC55 /* ForumListSnippet1.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = ForumListSnippet1.html; sourceTree = "<group>"; };
 		AF1BA759585A172D59846621 /* FLForumData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FLForumData.h; path = Models/ForumList/FLForumData.h; sourceTree = "<group>"; };
 		AF1BAABC494757FDA6C96AA2 /* FLForumData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FLForumData.m; path = Models/ForumList/FLForumData.m; sourceTree = "<group>"; };
+		AF1BAB8B318366A7F01EE25F /* PostsListSnippet1.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = PostsListSnippet1.html; sourceTree = "<group>"; };
+		AF1BAD3B4FE62D3E608389D6 /* ForumListSnippet2.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = ForumListSnippet2.html; sourceTree = "<group>"; };
 		AF1BAE66178C41A396CF7DB4 /* FLPart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FLPart.m; path = Models/ForumList/FLPart.m; sourceTree = "<group>"; };
 		AF1BAE843267D4AD7BA269B2 /* FLSubforum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FLSubforum.m; path = Models/ForumList/FLSubforum.m; sourceTree = "<group>"; };
 		AF1BAF6F0550F3B7A4851A76 /* FLPart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FLPart.h; path = Models/ForumList/FLPart.h; sourceTree = "<group>"; };
@@ -156,6 +170,7 @@
 		4752D7F41988E7C400C9DACF /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				47ADFE6819F5F402005BFF91 /* ReplyList */,
 				476F702E19D317E80085501A /* ForumList */,
 				47809D2519B404D600C18BC7 /* PostsList */,
 			);
@@ -235,6 +250,7 @@
 			children = (
 				4736613C196D3D39001202C5 /* Common */,
 				4752D7F41988E7C400C9DACF /* Models */,
+				4776476A19F849560028EBAF /* TestsResource */,
 				475AFF3A196A932C0030B0A4 /* Supporting Files */,
 			);
 			path = CHHTests;
@@ -281,12 +297,26 @@
 		476F702E19D317E80085501A /* ForumList */ = {
 			isa = PBXGroup;
 			children = (
-				476F702F19D317E80085501A /* FLForumDataTests.m */,
 				476F703019D317E80085501A /* FLPartTests.m */,
 				476F703119D317E80085501A /* FLSubforumTests.m */,
+				4776477319F892BC0028EBAF /* FLForumDataTests.m */,
 			);
 			name = ForumList;
 			path = Models/ForumList;
+			sourceTree = "<group>";
+		};
+		4776476A19F849560028EBAF /* TestsResource */ = {
+			isa = PBXGroup;
+			children = (
+				4776476B19F849560028EBAF /* ForumList.html */,
+				4776476C19F849560028EBAF /* login.html */,
+				4776476D19F849560028EBAF /* PostsList.html */,
+				4776476E19F849560028EBAF /* ReplyList.html */,
+				AF1BA5BE87CC1ADD65CAFC55 /* ForumListSnippet1.html */,
+				AF1BAD3B4FE62D3E608389D6 /* ForumListSnippet2.html */,
+				AF1BAB8B318366A7F01EE25F /* PostsListSnippet1.html */,
+			);
+			path = TestsResource;
 			sourceTree = "<group>";
 		};
 		477A33C019AB34E900F9C8D1 /* ForumList */ = {
@@ -317,10 +347,17 @@
 			isa = PBXGroup;
 			children = (
 				47809D2619B4050C00C18BC7 /* PLPostsTests.m */,
-				475BA19A19B46E5B0071193C /* PLSubforumTests.m */,
-				47C65A6F19E4CB71008FCB70 /* PL.txt */,
+				4776477519F892C30028EBAF /* PLSubforumTests.m */,
 			);
 			name = PostsList;
+			sourceTree = "<group>";
+		};
+		47ADFE6819F5F402005BFF91 /* ReplyList */ = {
+			isa = PBXGroup;
+			children = (
+				47ADFE6919F5F44E005BFF91 /* RLReplyTests.m */,
+			);
+			name = ReplyList;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -404,6 +441,7 @@
 				475AFF2D196A932C0030B0A4 /* Images.xcassets in Resources */,
 				475AFF1F196A932C0030B0A4 /* InfoPlist.strings in Resources */,
 				475AFF28196A932C0030B0A4 /* Main.storyboard in Resources */,
+				AF1BA9387F82D5808F550568 /* ForumListSnippet1.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -411,8 +449,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				47C65A7019E4CB71008FCB70 /* PL.txt in Resources */,
 				475AFF3E196A932C0030B0A4 /* InfoPlist.strings in Resources */,
+				4776477119F849560028EBAF /* PostsList.html in Resources */,
+				4776477219F849560028EBAF /* ReplyList.html in Resources */,
+				4776476F19F849560028EBAF /* ForumList.html in Resources */,
+				4776477019F849560028EBAF /* login.html in Resources */,
+				AF1BA11B47057F688224A94F /* ForumListSnippet2.html in Resources */,
+				AF1BA65446A6EEA586033FFD /* PostsListSnippet1.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -476,10 +519,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				475BA19B19B46E5B0071193C /* PLSubforumTests.m in Sources */,
-				476F703219D317E80085501A /* FLForumDataTests.m in Sources */,
 				476F703419D317E80085501A /* FLSubforumTests.m in Sources */,
+				4776477619F892C30028EBAF /* PLSubforumTests.m in Sources */,
+				4776477419F892BC0028EBAF /* FLForumDataTests.m in Sources */,
 				47809D2719B4050C00C18BC7 /* PLPostsTests.m in Sources */,
+				47ADFE6A19F5F44E005BFF91 /* RLReplyTests.m in Sources */,
 				476F703319D317E80085501A /* FLPartTests.m in Sources */,
 				47366141196D3E38001202C5 /* HTMLHandlerTests.m in Sources */,
 			);

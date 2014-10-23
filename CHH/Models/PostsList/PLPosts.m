@@ -8,55 +8,69 @@
 
 #import "PLPosts.h"
 #import "TFHpple.h"
+#import "HTMLHandler.h"
 
 @implementation PLPosts
 
 /**
 *  使用网页的内容片段，提取必要数据，初始化一个帖子对象。
 *
-*  @param content 需要解析的网页片段。格式：<tbody>...</tbody>，tbody 里面的内容就是需要解析的内容。
+*  @param content 需要解析的网页片段。格式：<div class="bm_c">...</div>，div 里面的内容就是需要解析的内容。
 *
 *  @return 初始化后的帖子对象。
 */
 - (id)initWithContent:(NSString *)content {
     NSData *htmlData = [content dataUsingEncoding:NSUTF8StringEncoding];
     TFHpple *doc = [[TFHpple alloc] initWithHTMLData:htmlData];
-
-    // 解析题目 //tr//th//a[@class='s xst']
+    
+    /*
+        TODO：由于 Hpple 本身的局限性，当标签与内容交杂在一起的时候，text 方法返回空内容。这里只能进行后期加工，不是正确的方法。
+        以后OCGumbo可能是一个选择，要不就自己开发html解析器。
+     */
+    // 解析标题、帖子地址
     NSString *title;
-    NSArray *elements = [doc searchWithXPathQuery:@"//tr//th//a[@class='s xst']"];
-    // > 1 或 < 1 都是错误情况
-    if ([elements count] != 1) {
-        return nil;
-    } else {
-        title = [elements[0] text];
-    }
-
-    // 解析帖子地址
-    NSString *href = [elements[0] objectForKey:@"href"];
-
-    // 解析回帖数量 //tr//td[@class='num']//a
-    NSString *replaySum = @"";
-    elements = [doc searchWithXPathQuery:@"//tr//td[@class='num']//a"];
-    // 有特殊情况，可以是空。
+	NSString *href;
+    NSArray *elements = [doc searchWithXPathQuery:@"//div//a"];
     if ([elements count] >= 1) {
-        replaySum = [elements[0] text];
+        title = [HTMLHandler htmlHandler:[elements[0] raw]];
+		href = [elements[0] objectForKey:@"href"];
     }
 
-    // 有2个：一个是帖子作者，一个是最后回帖的作者，只取第一个。
-    // 解析作者 //tr//td[@class='by']//cite//a
-    NSString *author = @"";
-    elements = [doc searchWithXPathQuery:@"//tr//td[@class='by']//cite//a"];
-    if ([elements count] >= 1) {
-        author = [elements[0] text];
-    }
+	// 解析作者
+	NSString *author;
+	elements = [doc searchWithXPathQuery:@"//div//span//a"];
+	if ([elements count] >= 1) {
+		author = [elements[0] text];
+	}
 
-    // 解析发表时间 //tr//td[@class='by']//em//span
-    NSString *releaseDate = @"";
-    elements = [doc searchWithXPathQuery:@"//tr//td[@class='by']//em//span"];
-    if ([elements count] >= 1) {
-        releaseDate = [elements[0] text];
-    }
+	// 解析时间＋回帖数量
+	NSString *combinationContent;
+	elements = [doc searchWithXPathQuery:@"//div//span"];
+	// 有特殊情况，可以是空。
+	if ([elements count] >= 1) {
+        NSString *content = [elements[0] raw];
+        NSString *re = @"20(.*)</span>";
+        NSRange range = [content rangeOfString:re options:NSRegularExpressionSearch];
+        if (range.location != NSNotFound) {
+            combinationContent = [HTMLHandler htmlHandler:[content substringWithRange:range]];
+        }
+	}
+
+	// 解析回帖数量
+	NSString *replySum;
+	NSString *releaseDate;
+	NSArray *combinationArray = [combinationContent componentsSeparatedByString:@" "];
+	if ([combinationArray count] < 1) {
+		replySum = @"";
+		releaseDate = @"";
+	} else if ([combinationArray count] == 1) {
+		releaseDate = combinationArray[0];
+	} else if ([combinationArray count] == 2) {
+		releaseDate = [NSString stringWithFormat:@"%@ %@", combinationArray[0], combinationArray[1]];
+	} else {
+		releaseDate = [NSString stringWithFormat:@"%@ %@", combinationArray[0], combinationArray[1]];
+		replySum = combinationArray[[combinationArray count]-1];
+	}
 
     if (nil == title || [@"" isEqualToString:title]) {
         return nil;
@@ -65,11 +79,15 @@
     if (nil == href || [@"" isEqualToString:href]) {
         return nil;
     }
+    
+    if (nil == author || [@"" isEqualToString:author]) {
+        return nil;
+    }
 
     if (self = [super init]) {
-        _title       = title;
+        _title       = [title stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
         _href        = href;
-        _replySum    = replaySum;
+        _replySum    = replySum;
         _author      = author;
         _releaseDate = releaseDate;
     }
@@ -98,7 +116,8 @@
 *  @return 描述字符串。
 */
 - (NSString *)description {
-    NSString *description = [NSString stringWithFormat:@"\n{\n\t标题：%@ \n\t地址：%@ \n\t回复数量：%@ \n\t作者：%@ \n\t发表时间：%@ \n}", _title, _href, _replySum, _author, _releaseDate];
+    NSString *description = [NSString stringWithFormat:@"\n{\n\t标题：%@ \n\t地址：%@ \n\t回复数量：%@ \n\t作者：%@ \n\t发表时间：%@ \n}",
+                             _title, _href, _replySum, _author, _releaseDate];
 
     return [description copy];
 }

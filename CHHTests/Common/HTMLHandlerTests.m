@@ -125,49 +125,55 @@
     currentURL = @"http://www.ltaaa.com";
     NSString *expect = @"http://www.ltaaa.com/thread-250046-1-1.html";
     result = [HTMLHandler urlConvertWithNeedChangeURL:needChangeURL andCurrentURL:currentURL];
-    XCTAssertTrue([expect isEqualToString:result], @"预期：%@\n结果：%@", expect, result);
+    XCTAssertTrue([expect isEqualToString:result], @"\n预期：%@\n结果：%@", expect, result);
     
     needChangeURL = @"thread-250046-1-1.html";
     currentURL = @"http://www.ltaaa.com/";
     expect = @"http://www.ltaaa.com/thread-250046-1-1.html";
     result = [HTMLHandler urlConvertWithNeedChangeURL:needChangeURL andCurrentURL:currentURL];
-    XCTAssertTrue([expect isEqualToString:result], @"预期：%@\n结果：%@", expect, result);
+    XCTAssertTrue([expect isEqualToString:result], @"\n预期：%@\n结果：%@", expect, result);
     
     needChangeURL = @"thread-250046-1-1.html";
     currentURL = @"http://www.ltaaa.com/bbs";
-    expect = @"http://www.ltaaa.com/bbs/thread-250046-1-1.html";
+    expect = @"http://www.ltaaa.com/thread-250046-1-1.html";
     result = [HTMLHandler urlConvertWithNeedChangeURL:needChangeURL andCurrentURL:currentURL];
-    XCTAssertTrue([expect isEqualToString:result], @"预期：%@\n结果：%@", expect, result);
+    XCTAssertTrue([expect isEqualToString:result], @"\n预期：%@\n结果：%@", expect, result);
     
     needChangeURL = @"thread-250046-1-1.html";
     currentURL = @"http://www.ltaaa.com/bbs/";
     expect = @"http://www.ltaaa.com/bbs/thread-250046-1-1.html";
     result = [HTMLHandler urlConvertWithNeedChangeURL:needChangeURL andCurrentURL:currentURL];
-    XCTAssertTrue([expect isEqualToString:result], @"预期：%@\n结果：%@", expect, result);
+    XCTAssertTrue([expect isEqualToString:result], @"\n预期：%@\n结果：%@", expect, result);
     
     needChangeURL = @"thread-250046-1-1.html";
     currentURL = @"http://www.ltaaa.com/bbs/xxxx.htm";
     expect = @"http://www.ltaaa.com/bbs/thread-250046-1-1.html";
     result = [HTMLHandler urlConvertWithNeedChangeURL:needChangeURL andCurrentURL:currentURL];
-    XCTAssertTrue([expect isEqualToString:result], @"预期：%@\n结果：%@", expect, result);
+    XCTAssertTrue([expect isEqualToString:result], @"\n预期：%@\n结果：%@", expect, result);
     
     needChangeURL = @"thread-250046-1-1.html";
     currentURL = @"http://www.ltaaa.com/bbs/xxxx.html";
     expect = @"http://www.ltaaa.com/bbs/thread-250046-1-1.html";
     result = [HTMLHandler urlConvertWithNeedChangeURL:needChangeURL andCurrentURL:currentURL];
-    XCTAssertTrue([expect isEqualToString:result], @"预期：%@\n结果：%@", expect, result);
+    XCTAssertTrue([expect isEqualToString:result], @"\n预期：%@\n结果：%@", expect, result);
     
     needChangeURL = @"thread-250046-1-1.html";
     currentURL = @"http://www.ltaaa.com/bbs/xx.html&user=aaa&pass=ss";
     expect = @"http://www.ltaaa.com/bbs/thread-250046-1-1.html";
     result = [HTMLHandler urlConvertWithNeedChangeURL:needChangeURL andCurrentURL:currentURL];
-    XCTAssertTrue([expect isEqualToString:result], @"预期：%@\n结果：%@", expect, result);
+    XCTAssertTrue([expect isEqualToString:result], @"\n预期：%@\n结果：%@", expect, result);
     
     needChangeURL = @"thread-250046-1-1.html";
     currentURL = @"http://www.ltaaa.com/bbs/forum.php";
     expect = @"http://www.ltaaa.com/bbs/thread-250046-1-1.html";
     result = [HTMLHandler urlConvertWithNeedChangeURL:needChangeURL andCurrentURL:currentURL];
-    XCTAssertTrue([expect isEqualToString:result], @"预期：%@\n结果：%@", expect, result);
+    XCTAssertTrue([expect isEqualToString:result], @"\n预期：%@\n结果：%@", expect, result);
+
+	needChangeURL = @"thread-250046-1-1.html";
+	currentURL = @"http://www.ltaaa.com/bbs/forum.php?id=lmcccccc";
+	expect = @"http://www.ltaaa.com/bbs/thread-250046-1-1.html";
+	result = [HTMLHandler urlConvertWithNeedChangeURL:needChangeURL andCurrentURL:currentURL];
+	XCTAssertTrue([expect isEqualToString:result], @"\n预期：%@\n结果：%@", expect, result);
     
 	// ../的情况
     needChangeURL = @"../thread-250046-1-1.html";

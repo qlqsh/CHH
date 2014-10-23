@@ -74,6 +74,7 @@
  * ©    &copy;
  * ®    &reg;
  * ™    &trade;
+ *      &#13;   // Hpple查询后出现，我猜是回车（不可见）。
  * 空	\t
  * 空	\n
  */
@@ -97,7 +98,7 @@
         @"&copy;"   : @"©",
         @"&reg;"    : @"®",
         @"&trade;"  : @"™",
-		@"&#13;"	: @""		// Hpple查询后出现，我猜是回车（不可见）。
+		@"&#13;"	: @""
     };
     
     __block NSString *handlerContent = htmlContent;
@@ -185,26 +186,24 @@
     // 5、http://www.ltaaa.com/bbs/xxxx.htm
     // 6、http://www.ltaaa.com/bbs/xxxx.html
 	// 7、http://www.ltaaa.com/bbs/forum.php
+	// 8、http://www.ltaaa.com/bbs/xxxx.php?id=xxxjffjsjfsjfsjfsdjfsfjd
 	NSString *urlString;
     NSURL *url = [NSURL URLWithString:currentURL];
     NSString *lastPathComponent = [url lastPathComponent];
-    if (([lastPathComponent rangeOfString:@".htm"].location != NSNotFound) ||
-		([lastPathComponent rangeOfString:@".php"].location != NSNotFound))   // 情况5、6、7
-    {
-        NSRange lastRange = [currentURL rangeOfString:lastPathComponent];
-        NSString *head = [currentURL substringToIndex:currentURL.length-lastRange.length];
-        urlString = [NSString stringWithFormat:@"%@%@", head, needChangeURL];
-    } else
-    {
-        unichar anChar = [currentURL characterAtIndex:currentURL.length-1];
-        if (anChar == '/') // 情况2、4
-        {
-            urlString = [NSString stringWithFormat:@"%@%@", currentURL, needChangeURL];
-        } else  // 情况1、3
-        {
-            urlString = [NSString stringWithFormat:@"%@%@%@", currentURL, @"/", needChangeURL];
-        }
-    }
+    // 这里不应该这么判断，这里我做错了。
+	// 判断最后一个是否“/”
+	unichar anChar = [currentURL characterAtIndex:currentURL.length-1];
+	if (anChar == '/') {
+		urlString = [NSString stringWithFormat:@"%@%@", currentURL, needChangeURL];
+	} else {
+		if (lastPathComponent == nil || [lastPathComponent isEqualToString:@""]) {
+			urlString = [NSString stringWithFormat:@"%@/%@", currentURL, needChangeURL];
+		} else {
+			NSRange lastRange = [currentURL rangeOfString:lastPathComponent];
+			NSString *head = [currentURL substringToIndex:lastRange.location];
+			urlString = [NSString stringWithFormat:@"%@%@", head, needChangeURL];
+		}
+	}
 	
 	return [[[NSURL URLWithString:urlString] standardizedURL] absoluteString];
 }

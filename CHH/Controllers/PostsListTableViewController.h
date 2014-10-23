@@ -10,6 +10,7 @@
 
 @interface PostsListTableViewController : UITableViewController
 
+@property (nonatomic, copy) NSString *href;
 @property (nonatomic, strong) NSArray *postsList;
 
 @end

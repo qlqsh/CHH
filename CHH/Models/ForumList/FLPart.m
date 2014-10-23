@@ -15,7 +15,7 @@
 /**
 *  用网页内容片断初始化分区对象。
 *
-*  @param content 需要提取的网页片断
+*  @param content 需要提取的网页片断。样式：<div class="bm">...</div>
 */
 - (id)initWithContent:(NSString *)content {
     NSData *htmlData = [content dataUsingEncoding:NSUTF8StringEncoding];
@@ -23,7 +23,7 @@
 
     // 获得分区名称
     NSString *partName;
-    NSArray *elements = [doc searchWithXPathQuery:@"//h2//a"];
+    NSArray *elements = [doc searchWithXPathQuery:@"//div[@class='bm_h']"];
     // >1 或 <1 都是错误情况
     if ([elements count] != 1) {
         return nil;
@@ -33,7 +33,7 @@
 
     // 获得分区下子板块
     NSMutableArray *subforums = [[NSMutableArray alloc] init];
-    NSArray *subForumElements = [doc searchWithXPathQuery:@"//dt"];
+    NSArray *subForumElements = [doc searchWithXPathQuery:@"//div"];
 
     for (TFHppleElement *element in subForumElements) {
         FLSubforum *subforum = [[FLSubforum alloc] initWithContent:[element raw]];
@@ -50,7 +50,7 @@
     }
 
     if (self = [super init]) {
-        _name = partName;
+        _name = [partName stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];;
         _subforumList = [subforums copy];
     }
 
@@ -94,31 +94,6 @@
     }
 
     return NO;
-}
-
-#pragma mark - NSCoding
-
-/**
-*  对属性进行编码。
-*/
-- (void)encodeWithCoder:(NSCoder *)aCoder {
-    [aCoder encodeObject:_name forKey:@"name"];
-    [aCoder encodeObject:_subforumList forKey:@"subforums"];
-}
-
-/**
-*  解码，建立 FLSubforum 对象。
-*/
-- (id)initWithCoder:(NSCoder *)aDecoder {
-    NSString *name = [aDecoder decodeObjectForKey:@"name"];
-    NSArray *subforumList = [aDecoder decodeObjectForKey:@"subforums"];
-
-    if (self = [super init]) {
-        _name = name;
-        _subforumList = subforumList;
-    }
-
-    return self;
 }
 
 @end

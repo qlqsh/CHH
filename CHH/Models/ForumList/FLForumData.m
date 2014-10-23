@@ -7,16 +7,12 @@
 //
 
 #import "FLForumData.h"
-
 #import "GetURLContent.h"
-
 #import "TFHpple.h"
-
 #import "FLPart.h"
-#import "TFHppleElement.h"
 
 #ifndef SubforumURL
-#define SubforumURL @"http://www.chiphell.com/forum.php"    // 板块列表网址
+#define SubforumURL @"http://www.chiphell.com/forum.php?mobile=yes"    // 板块列表网址
 #endif
 
 @interface FLForumData ()
@@ -34,7 +30,7 @@
     NSData *htmlData = [GetURLContent contentWithURL:SubforumURL];
     TFHpple *doc = [[TFHpple alloc] initWithHTMLData:htmlData];
 
-    NSArray *elements = [doc searchWithXPathQuery:@"//div[@class='bm bmw  flg cl']"];
+    NSArray *elements = [doc searchWithXPathQuery:@"//div[@class='bm']"];
     NSMutableArray *parts = [[NSMutableArray alloc] init];
     if ([elements count] < 1) {
         // 获取本地数据

@@ -10,6 +10,8 @@
 #import "FLForumData.h"
 #import "FLPart.h"
 #import "FLSubforum.h"
+#import "PostsListTableViewController.h"
+#import "HTMLHandler.h"
 
 @interface SubforumTableViewController ()
 
@@ -18,16 +20,16 @@
 @implementation SubforumTableViewController
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
+	[super viewDidLoad];
 
-    FLForumData *forumData = [[FLForumData alloc] init];
-    _partList = forumData.partList;
+	FLForumData *forumData = [[FLForumData alloc] init];
+	_partList = forumData.partList;
 
 }
 
 - (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+	[super didReceiveMemoryWarning];
+	// Dispose of any resources that can be recreated.
 }
 
 
@@ -37,49 +39,49 @@
 *  节数。
 */
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return [_partList count];
+	return [_partList count];
 }
 
 /**
 *  每节行数。
 */
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    FLPart *part = _partList[(NSUInteger) section];
-    return [part.subforumList count];
+	FLPart *part = _partList[(NSUInteger) section];
+	return [part.subforumList count];
 }
 
 /**
 *  定义每一行。
 */
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SubforumCell" forIndexPath:indexPath];
+	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SubforumCell" forIndexPath:indexPath];
 
-    FLPart *part = _partList[(NSUInteger) indexPath.section];
-    FLSubforum *subforum = (part.subforumList)[(NSUInteger) indexPath.row];
+	FLPart *part = _partList[(NSUInteger) indexPath.section];
+	FLSubforum *subforum = (part.subforumList)[(NSUInteger) indexPath.row];
 
-    cell.textLabel.text = [NSString stringWithFormat:@"%@%@", subforum.name, subforum.number];
+	cell.textLabel.text = [NSString stringWithFormat:@"%@%@", subforum.name, subforum.number];
 
-    return cell;
+	return cell;
 }
 
 /**
 * 设置头内容。
 */
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    FLPart *part = _partList[(NSUInteger) section];
-    return part.name;
+	FLPart *part = _partList[(NSUInteger) section];
+	return part.name;
 }
 
-
-/*
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+	PostsListTableViewController *postsList = [segue destinationViewController];
+	NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
+	FLPart *part = _partList[(NSUInteger) indexPath.section];
+	FLSubforum *subforum = (part.subforumList)[(NSUInteger) indexPath.row];
+	postsList.href = [HTMLHandler urlConvertWithNeedChangeURL:subforum.href
+												andCurrentURL:@"http://www.chiphell.com/forum.php?mobile=yes"];
 }
-*/
 
 @end
